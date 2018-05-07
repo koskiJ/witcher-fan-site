@@ -29,12 +29,12 @@ export class CharactersComponent implements OnInit {
     if (n > slides.length) {this.slideIndex = 1; }
     if (n < 1) {this.slideIndex = slides.length; }
     for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = 'none';
+        slides[i].setAttribute('style', 'display:none');
     }
     for (let i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(' active', '');
     }
-    slides[this.slideIndex - 1].style.display = 'block';
+    slides[this.slideIndex - 1].setAttribute('style', 'display:block');
     dots[this.slideIndex - 1].className += ' active';
   }
 

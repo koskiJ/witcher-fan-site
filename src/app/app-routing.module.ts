@@ -8,7 +8,7 @@ const appRoutes: Routes = [{path: '', redirectTo: 'main', pathMatch: 'full'},
                         {path: '**', component: NotfoundComponent}];
 
 @NgModule({
-    imports: [RouterModule.forRoot(appRoutes, {enableTracing: true})],
+    imports: [RouterModule.forRoot(appRoutes, {enableTracing: false})],
     exports: [RouterModule]
 })
 export class AppRoutingModule {}

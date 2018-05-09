@@ -1,0 +1,10 @@
+<div>
+  <h2>Vote for your favorite character</h2>
+  <form #fElem="ngForm" [hidden]="answered">
+    <input #iElem="ngModel" [ngModel]="votedPerson" name="nm" placeholder="Favorite character"
+    pattern="^[A-Z][a-z]+$" required>
+    <button [disabled]="!fElem.form.valid" (click)="vote(iElem.value)">Vote</button>
+  </form>
+  <h4 [hidden]="!answered">Thanks for voting!</h4>
+</div>
+<app-chart></app-chart>

@@ -9,6 +9,7 @@ import { MainpageModule } from './mainpage/mainpage.module';
 import { MonstersModule } from './monsters/monsters.module';
 import { CharactersRoutingModule } from './characters/characters-routing.module';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { VoteModule } from './vote/vote.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     MainpageModule,
     CharactersModule,
     MonstersModule,
+    VoteModule,
     AppRoutingModule
   ],
   providers: [],

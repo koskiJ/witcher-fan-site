@@ -1,6 +1,7 @@
-<div class = "slideshow container">
+<div class = "slideshow-container">
   <div class="mySlides fade" *ngFor='let character of characters'>
       <img src= "{{'assets/' + character.name + '.jpg'}}" style="width:100%">
+      <div class="text">{{character.description}}</div>
   </div>
 
   <a class="prev" (click)="plusSlides(-1)">&#10094;</a>

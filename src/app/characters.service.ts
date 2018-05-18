@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
 
+class Temp {
+  id: string;
+  name: string;
+  description: string;
+}
+
 @Injectable()
 export class CharactersService {
   private characters: Object[];
-  private url: string = 'https://localhost:8080/characters/';
+  private url: string = 'https://witcher-fan-app.herokuapp.com/characters/';
   private charsInitialized: boolean = false;
 
   constructor() { }

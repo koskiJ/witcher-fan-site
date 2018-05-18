@@ -1,5 +1,9 @@
 * {box-sizing:border-box}
 
+h2 {
+  text-align: center;
+}
+
 /* Slideshow container */
 .slideshow-container {
   max-width: 960px;

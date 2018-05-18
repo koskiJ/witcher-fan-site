@@ -1,6 +1,7 @@
 <div class = "slideshow-container">
   <div class="mySlides fade" *ngFor='let character of characters'>
-      <img src= "{{'assets/' + character.name + '.jpg'}}" style="width:100%">
+      <h2>{{character.name}}</h2>
+      <img src= "{{'assets/' + character.name + '.jpg' | lowercase}}" style="width:100%">
       <div class="text">{{character.description}}</div>
   </div>
 

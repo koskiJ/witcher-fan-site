@@ -9,7 +9,7 @@ class Temp {
 @Injectable()
 export class CharactersService {
   private characters: Object[];
-  private url: string = 'https://witcher-fan-app.herokuapp.com/characters/';
+  private url: string = 'https://witcher-fan-app.herokuapp.com/chars/';
   private charsInitialized: boolean = false;
 
   constructor() { }

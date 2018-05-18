@@ -21,7 +21,7 @@ con.connect(function(err) {
 app.use(express.static(__dirname + '/dist'));
 app.use(cors());
 
-app.get('/characters', function (req, res) {
+app.get('/chars', function (req, res) {
     const sql = 'SELECT * FROM characters';
     let got;
     con.query(sql, function (err, result, fields) {

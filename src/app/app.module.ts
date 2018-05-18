@@ -10,6 +10,7 @@ import { MonstersModule } from './monsters/monsters.module';
 import { CharactersRoutingModule } from './characters/characters-routing.module';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { VoteModule } from './vote/vote.module';
+import { CharactersService } from './characters.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { VoteModule } from './vote/vote.module';
     VoteModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CharactersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

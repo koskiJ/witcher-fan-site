@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CharactersService } from '../characters.service';
 
 @Component({
   selector: 'app-characters',
@@ -7,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharactersComponent implements OnInit {
   slideIndex: number = 1;
-  characters = [{'name': 'geralt', 'description': 'Main character'},
-        {'name': 'yennefer', 'description': 'Sorceress'}];
+  characters = [];
 
-  constructor() { }
+  constructor(private charServ: CharactersService) { }
 
   ngOnInit() {
+    this.characters = this.charServ.getChars();
+    console.log(this.characters);
   }
 
   plusSlides(n: number) {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params } from '@angular/router';
+import { MonstersService } from '../monsters.service';
 
 @Component({
   selector: 'app-monsters',
@@ -7,12 +8,12 @@ import {ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./monsters.component.css']
 })
 export class MonstersComponent implements OnInit {
-  monsters = [{'name': 'foglet', 'description': 'Monster'},
-              {'name': 'harpy', 'description': 'Monster'}];
+  monsters = [];
 
-  constructor() { }
+  constructor(private monServ: MonstersService) { }
 
   ngOnInit() {
+    this.monsters = this.monServ.getMonsters();
   }
 
 }

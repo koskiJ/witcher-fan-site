@@ -2,6 +2,7 @@
 <ul>
   <li *ngFor="let m of monsters">
     <h4>{{m.name}}</h4>
-    <a routerLink="{{m.name}}"><img src="{{'assets/' + m.name + '_thumb.png'}}"></a>
+    <a routerLink="{{m.name | lowercase}}"><img src=
+      "{{'assets/' + m.name + '_thumb.png' | lowercase}}"></a>
   </li>
 </ul>

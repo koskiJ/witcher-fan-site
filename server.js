@@ -23,10 +23,16 @@ app.use(cors());
 
 app.get('/chars', function (req, res) {
     const sql = 'SELECT * FROM characters';
-    let got;
     con.query(sql, function (err, result, fields) {
         if (err) throw err;
-        got = result;
+        res.send(result);
+      });
+});
+
+app.get('/mons', function (req, res) {
+    const sql = 'SELECT * FROM monsters';
+    con.query(sql, function (err, result, fields) {
+        if (err) throw err;
         res.send(result);
       });
 });

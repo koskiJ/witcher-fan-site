@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CharactersService {
   private characters: Object[];
-  private url: string = 'http://localhost:8080/characters/';
+  private url: string = 'https://localhost:8080/characters/';
   private charsInitialized: boolean = false;
 
   constructor() { }

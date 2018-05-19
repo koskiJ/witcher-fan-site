@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-
-interface Monster {
-  id: string;
-  name: string;
-  description: string;
-}
+import { Monster } from './monster.interface';
 
 @Injectable()
 export class MonstersService {

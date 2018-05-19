@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MonstersService } from '../monsters.service';
-
-interface Monster {
-  id: string;
-  name: string;
-  description: string;
-}
+import { Monster } from '../monster.interface';
 
 @Component({
   selector: 'app-monster',

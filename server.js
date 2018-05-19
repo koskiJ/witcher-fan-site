@@ -37,6 +37,14 @@ app.get('/mons', function (req, res) {
       });
 });
 
+app.get('/votes', function (req, res) {
+    const sql = 'SELECT * FROM votes';
+    con.query(sql, function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      });
+});
+
 app.get('/*', function(req,res) {
 
     res.sendFile(path.join(__dirname+'/dist/index.html'));

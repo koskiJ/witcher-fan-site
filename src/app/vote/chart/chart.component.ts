@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
+import { VotesService } from '../../votes.service';
 
 @Component({
   selector: 'app-chart',
@@ -7,16 +8,19 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
-  public pieChartLabels: string[] = ['Geralt', 'Yennefer', 'Dandelion'];
-  public pieChartData: number[] = [3, 1, 2];
+  public pieChartLabels: string[] = [];
+  public pieChartData: number[] = [];
   public pieChartType: string = 'pie';
-  votes: number[];
   @ViewChild(BaseChartDirective) chart;
 
-  constructor() { }
+  constructor(private votesServ: VotesService) { }
 
   ngOnInit() {
-    this.votes = this.pieChartData;
+    const voteData = this.votesServ.getVotes();
+    for (const v of voteData) {
+      this.pieChartLabels.push(v.name);
+      this.pieChartData.push(v.votes);
+    }
   }
 
   refresh(name: string) {
@@ -26,7 +30,6 @@ export class ChartComponent implements OnInit {
         if (this.pieChartLabels[i] === name) {
             this.pieChartData[i]++;
             found = true;
-            console.log(this.pieChartLabels[i], 'found', this.pieChartData[i]);
             break;
         }
     }

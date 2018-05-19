@@ -1,9 +1,15 @@
 <div>
   <h2>Vote for your favorite character</h2>
   <form #fElem="ngForm" [hidden]="answered">
+    <span [hidden]="iElem.valid || iElem.pristine">Please match your input with suggestions</span>
+    <div>
     <input #iElem="ngModel" [ngModel]="votedPerson" name="nm" placeholder="Favorite character"
-    pattern="^[A-Z][a-z]+$" required>
+    pattern={{charRegEx}} list="chars" required>
+    <datalist id="chars">
+      <option *ngFor="let c of characters" value="{{c}}"></option>
+    </datalist>
     <button [disabled]="!fElem.form.valid" (click)="vote(iElem.value)">Vote</button>
+    </div>
   </form>
   <h4 [hidden]="!answered">Thanks for voting!</h4>
 </div>

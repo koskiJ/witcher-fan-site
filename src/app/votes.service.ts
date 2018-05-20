@@ -89,6 +89,7 @@ export class VotesService {
 
     sqlString(nam);
     xhr.send(req);
+    root.makeVotesRequest();
     return false;
   }
 

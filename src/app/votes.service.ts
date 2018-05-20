@@ -52,10 +52,6 @@ export class VotesService {
     let found = false;
 
     function sqlString(name: string) {
-      if (!root.votesInitialized) {
-        root.makeVotesRequest();
-      }
-
       for (const v of root.votes) {
         if (name === v.name) {
           const voteAmount = v.votes + 1;
@@ -87,9 +83,10 @@ export class VotesService {
       console.log('onerror');
     };
 
+    this.makeVotesRequest();
     sqlString(nam);
     xhr.send(req);
-    root.makeVotesRequest();
+    this.makeVotesRequest();
     return false;
   }
 

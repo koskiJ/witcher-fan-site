@@ -1,8 +1,10 @@
 <h1>Monsters</h1>
-<ul>
-  <li *ngFor="let m of monsters">
-    <h4>{{m.name}}</h4>
-    <a routerLink="{{m.name | lowercase}}"><img src=
-      "{{'assets/' + m.name + '_thumb.png' | lowercase}}"></a>
-  </li>
-</ul>
+<div>
+  <ul>
+    <li *ngFor="let m of monsters">
+      <h4>{{m.name}}</h4>
+      <a routerLink="{{m.name | lowercase}}"><img src=
+        "{{'assets/' + m.name + '_thumb.png' | lowercase}}"></a>
+    </li>
+  </ul>
+</div>

@@ -19,9 +19,14 @@ li a {
 }
 
 li a:hover {
-    background-color: black;
+    background-color: darkred;
 }
 
 .active {
-    background-color: darkcyan;
+    background-color: dimgray;
+}
+
+img {
+    width: 100%;
+    max-width: 800px;
 }

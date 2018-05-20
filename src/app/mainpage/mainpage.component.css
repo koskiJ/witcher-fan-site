@@ -1,12 +1,21 @@
 div {
-    min-width: 1000px;
+    /*min-width: 1000px;*/
     margin: auto;
+    text-align: center;
+    overflow: hidden;
 }
 
 img {
     width: 100%;
+    min-height: 500px;
+    object-fit: cover;
 }
 
 h2 {
     text-align: center;
+    color: white;
+}
+
+html, body {
+    background-color: red !important;
 }

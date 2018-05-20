@@ -26,7 +26,7 @@ export class CharactersService {
     return xhr;
   }
 
-  private makePersonnelRequest() {
+  private makeCharactersRequest() {
     const url = this.url;
     const root = this;
 
@@ -52,7 +52,7 @@ export class CharactersService {
   }
 
   updateChars() {
-    this.makePersonnelRequest();
+    this.makeCharactersRequest();
   }
 
   getChars() {

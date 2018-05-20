@@ -14,7 +14,6 @@ export class CharactersComponent implements OnInit {
 
   ngOnInit() {
     this.characters = this.charServ.getChars();
-    console.log(this.characters);
   }
 
   plusSlides(n: number) {

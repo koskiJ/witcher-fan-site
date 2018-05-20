@@ -21,7 +21,7 @@ export class MonstersService {
     return xhr;
   }
 
-  private makePersonnelRequest() {
+  private makeMonstersRequest() {
     const url = this.url;
     const root = this;
 
@@ -47,7 +47,7 @@ export class MonstersService {
   }
 
   updateMonsters() {
-    this.makePersonnelRequest();
+    this.makeMonstersRequest();
   }
 
   getMonsters() {

@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const mysql = require('mysql');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+
 
 const app = express();
 const con = mysql.createConnection({
@@ -20,6 +22,7 @@ con.connect(function(err) {
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
 app.use(cors());
+app.use(bodyParser.text());
 
 app.get('/chars', function (req, res) {
     const sql = 'SELECT * FROM characters';
@@ -40,6 +43,14 @@ app.get('/mons', function (req, res) {
 app.get('/votes', function (req, res) {
     const sql = 'SELECT * FROM votes';
     con.query(sql, function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      });
+});
+
+app.post('/votes', function(req, res) {
+    let t = req.body;
+    con.query(t, function (err, result, fields) {
         if (err) throw err;
         res.send(result);
       });

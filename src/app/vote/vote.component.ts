@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartComponent } from './chart/chart.component';
 import { CharactersService } from '../characters.service';
+import { VotesService } from '../votes.service';
 
 interface Character {
   id: string;
@@ -20,7 +21,7 @@ export class VoteComponent implements OnInit {
   charRegEx = '';
   @ViewChild(ChartComponent) child;
 
-  constructor(private charServ: CharactersService) { }
+  constructor(private charServ: CharactersService, private vServ: VotesService) { }
 
   ngOnInit() {
     const array = <Character[]> this.charServ.getChars();
@@ -35,6 +36,7 @@ export class VoteComponent implements OnInit {
   vote(name: string) {
     console.log(name);
     this.child.refresh(name);
+    this.vServ.addVote(name);
     this.answered = true;
     return false;
   }

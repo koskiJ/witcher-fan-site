@@ -20,7 +20,7 @@ export class VotesService {
     return xhr;
   }
 
-  private makePersonnelRequest() {
+  private makeVotesRequest() {
     const url = this.url;
     const root = this;
 
@@ -45,8 +45,55 @@ export class VotesService {
     return false;
   }
 
+  private makeAddRequest(nam: string) {
+    const url = this.url;
+    const root = this;
+    let req: string = '';
+    let found = false;
+
+    function sqlString(name: string) {
+      if (!root.votesInitialized) {
+        root.makeVotesRequest();
+      }
+
+      for (const v of root.votes) {
+        if (name === v.name) {
+          const voteAmount = v.votes + 1;
+          req = 'UPDATE votes SET votes = "' + voteAmount + '" WHERE name = "' + name + '"';
+          found = true;
+          break;
+        }
+
+        if (!found) {
+          req = 'INSERT INTO votes (name, votes) VALUES ("' + name + '", "1")';
+        }
+      }
+    }
+
+    const xhr = this.createCORSRequest('POST', url);
+    xhr.setRequestHeader("Content-type", "text/plain");
+    if (!xhr) {
+      console.log('CORS not supported');
+      return;
+    }
+
+    // Response handlers.
+    xhr.onload = function() {
+      console.log('onload');
+      // console.log(xhr.responseText);
+    };
+
+    xhr.onerror = function() {
+      console.log('onerror');
+    };
+
+    sqlString(nam);
+    xhr.send(req);
+    return false;
+  }
+
   updateVotes() {
-    this.makePersonnelRequest();
+    this.makeVotesRequest();
   }
 
   getVotes() {
@@ -55,6 +102,10 @@ export class VotesService {
     } else {
       console.log('table not initialized');
     }
+  }
+
+  addVote(name: string) {
+    this.makeAddRequest(name);
   }
 
 }

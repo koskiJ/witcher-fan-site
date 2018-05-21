@@ -1,0 +1,16 @@
+img {
+    max-width: 900px;
+    width: 100%;
+    min-height: 600px;
+    object-fit: cover;
+}
+
+div {
+    text-align: center;
+    margin: auto;
+    overflow: hidden;
+}
+
+p {
+    text-align: justify;
+}

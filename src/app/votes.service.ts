@@ -97,7 +97,7 @@ export class VotesService {
   }
 
   private makeIpsRequest() {
-    const url: string = 'http://localhost:8080/ips/';
+    const url: string = 'https://witcher-fan-app.herokuapp.com/ips/';
     const root = this;
 
     const xhr = this.createCORSRequest('GET', url);
@@ -123,7 +123,7 @@ export class VotesService {
   }
 
   private makeAddIpRequest(ip: string) {
-    const url: string = 'http://localhost:8080/ips/';
+    const url: string = 'https://witcher-fan-app.herokuapp.com/ips/';
     const root = this;
     const req: string = 'INSERT INTO voters (ip) VALUES ("' + ip + '")';
 

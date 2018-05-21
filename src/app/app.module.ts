@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { VotesService } from './votes.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     MainpageModule,
     CharactersModule,
     MonstersModule,

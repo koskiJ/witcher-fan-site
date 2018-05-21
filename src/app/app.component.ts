@@ -17,5 +17,6 @@ export class AppComponent implements OnInit {
     this.charServ.updateChars();
     this.monServ.updateMonsters();
     this.votesServ.updateVotes();
+    this.votesServ.newVoter();
   }
 }

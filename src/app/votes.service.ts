@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+interface ItemResponse {
+  ip: string;
+}
 
 @Injectable()
 export class VotesService {
   private votes;
+  private ips;
+  private hasVoted: boolean = false;
   private url: string = 'https://witcher-fan-app.herokuapp.com/votes/';
   private votesInitialized: boolean = false;
+  private ipsInitialized: boolean = false;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   private createCORSRequest(method, url) {
     let xhr = new XMLHttpRequest();
@@ -32,7 +40,6 @@ export class VotesService {
 
     // Response handlers.
     xhr.onload = function() {
-      console.log('onload');
       root.votes = JSON.parse(xhr.response);
       root.votesInitialized = true;
     };
@@ -75,7 +82,6 @@ export class VotesService {
 
     // Response handlers.
     xhr.onload = function() {
-      console.log('onload');
       // console.log(xhr.responseText);
     };
 
@@ -87,6 +93,59 @@ export class VotesService {
     sqlString(nam);
     xhr.send(req);
     this.makeVotesRequest();
+    return false;
+  }
+
+  private makeIpsRequest() {
+    const url: string = 'http://localhost:8080/ips/';
+    const root = this;
+
+    const xhr = this.createCORSRequest('GET', url);
+    if (!xhr) {
+      console.log('CORS not supported');
+      return;
+    }
+
+    // Response handlers.
+    xhr.onload = function() {
+      console.log('onload');
+      root.ips = JSON.parse(xhr.response);
+      console.log(root.ips);
+      root.ipsInitialized = true;
+    };
+
+    xhr.onerror = function() {
+      console.log('onerror');
+    };
+
+    xhr.send();
+    return false;
+  }
+
+  private makeAddIpRequest(ip: string) {
+    const url: string = 'http://localhost:8080/ips/';
+    const root = this;
+    const req: string = 'INSERT INTO voters (ip) VALUES ("' + ip + '")';
+
+    const xhr = this.createCORSRequest('POST', url);
+    xhr.setRequestHeader("Content-type", "text/plain");
+    if (!xhr) {
+      console.log('CORS not supported');
+      return;
+    }
+
+    // Response handlers.
+    xhr.onload = function() {
+      // console.log(xhr.responseText);
+    };
+
+    xhr.onerror = function() {
+      console.log('onerror');
+    };
+
+    xhr.send(req);
+    this.makeIpsRequest();
+    this.hasVoted = true;
     return false;
   }
 
@@ -104,6 +163,37 @@ export class VotesService {
 
   addVote(name: string) {
     this.makeAddRequest(name);
+  }
+
+  canVote(): boolean {
+    return this.hasVoted;
+  }
+
+  newVoter() {
+    let ip: string;
+    this.http.get<ItemResponse>('https://www.jsonip.com').subscribe( data => {
+      console.log('newVoter');
+      ip = data.ip;
+    });
+
+    this.makeIpsRequest();
+    console.log(ip);
+
+    for (const i of this.ips) {
+      if (ip === i.ip) {
+        this.hasVoted = true;
+      }
+    }
+    console.log(this.hasVoted);
+  }
+
+  addVoter() {
+    let ip: string;
+    this.http.get<ItemResponse>('https://jsonip.com').subscribe( data => {
+      ip = data.ip;
+    });
+
+    this.makeAddIpRequest(ip);
   }
 
 }

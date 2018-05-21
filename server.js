@@ -48,6 +48,22 @@ app.get('/votes', function (req, res) {
       });
 });
 
+app.get('/ips', function (req, res) {
+    const sql = 'SELECT * FROM voters';
+    con.query(sql, function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      });
+});
+
+app.post('/ips', function(req, res) {
+    let t = req.body;
+    con.query(t, function (err, result, fields) {
+        if (err) throw err;
+        res.send(result);
+      });
+});
+
 app.post('/votes', function(req, res) {
     let t = req.body;
     con.query(t, function (err, result, fields) {

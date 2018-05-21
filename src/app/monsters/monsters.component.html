@@ -3,8 +3,9 @@
   <ul>
     <li *ngFor="let m of monsters">
       <h4>{{m.name}}</h4>
-      <a routerLink="{{m.name | lowercase}}"><img src=
-        "{{'assets/' + m.name + '_thumb.png' | lowercase}}"></a>
+      <a routerLink="{{m.name | lowercase}}"><div [ngClass]="{'griffin': m.name==='Griffin'}">
+        <img src="{{'assets/' + m.name + '_thumb.png' | lowercase}}"></div>
+      </a>
     </li>
   </ul>
 </div>

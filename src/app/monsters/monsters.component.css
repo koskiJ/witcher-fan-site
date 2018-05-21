@@ -26,3 +26,17 @@ div {
     width: 100%;
     text-align: center;
 }
+
+.griffin {
+    padding-top: 77px;
+}
+
+@media screen and (max-width: 740px) {
+    img {
+        max-width: 250px;
+    }
+
+    .griffin {
+        padding-top: 55px;
+    }
+}

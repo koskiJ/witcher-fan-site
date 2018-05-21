@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MonstersService } from '../monsters.service';
 import { Monster } from '../monster.interface';
 
@@ -12,12 +12,20 @@ export class MonsterComponent implements OnInit {
   mName: string;
   mDesc;
 
-  constructor(private aRoute: ActivatedRoute, private monServ: MonstersService) { }
+  constructor(private aRoute: ActivatedRoute, private monServ: MonstersService, private r: Router) { }
 
   ngOnInit() {
     this.aRoute.params.subscribe((params: Params) => {
       this.mName = params['name'];
     });
+
+    /*this.r.events.subscribe((path) => {
+      if (path.url != this.url) {
+        window.scrollTo(0, 0);
+      }
+    });*/
+
+    window.scrollTo(0, 0);
 
     this.mName = this.mName[0].toUpperCase() + this.mName.substring(1);
     const m: Monster = this.monServ.getMonster(this.mName);

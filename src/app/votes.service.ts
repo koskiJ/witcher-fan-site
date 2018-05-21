@@ -97,7 +97,7 @@ export class VotesService {
   }
 
   private makeIpsRequest() {
-    const url: string = 'https://witcher-fan-app.herokuapp.com/ips/';
+    const url: string = 'http://localhost:8080/ips/';
     const root = this;
 
     const xhr = this.createCORSRequest('GET', url);
@@ -108,9 +108,7 @@ export class VotesService {
 
     // Response handlers.
     xhr.onload = function() {
-      console.log('onload');
       root.ips = JSON.parse(xhr.response);
-      console.log(root.ips);
       root.ipsInitialized = true;
     };
 
@@ -171,13 +169,15 @@ export class VotesService {
 
   newVoter() {
     let ip: string;
-    this.http.get<ItemResponse>('https://www.jsonip.com').subscribe( data => {
-      console.log('newVoter');
-      ip = data.ip;
-    });
+    /*this.http.get<ItemResponse>('https://jsonip.com/').subscribe( jsonObject => {
+      console.log(jsonObject);
+      //ip = data.ip;
+    }, err => {
+      console.log(err);
+    });*/
 
     this.makeIpsRequest();
-    console.log(ip);
+    console.log(window.location.hostname);
 
     for (const i of this.ips) {
       if (ip === i.ip) {

@@ -21,7 +21,6 @@ con.connect(function(err) {
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
-app.options('*', cors());
 app.use(cors());
 app.use(bodyParser.text());
 
@@ -44,22 +43,6 @@ app.get('/mons', function (req, res) {
 app.get('/votes', function (req, res) {
     const sql = 'SELECT * FROM votes';
     con.query(sql, function (err, result, fields) {
-        if (err) throw err;
-        res.send(result);
-      });
-});
-
-app.get('/ips', function (req, res) {
-    const sql = 'SELECT * FROM voters';
-    con.query(sql, function (err, result, fields) {
-        if (err) throw err;
-        res.send(result);
-      });
-});
-
-app.post('/ips', function(req, res) {
-    let t = req.body;
-    con.query(t, function (err, result, fields) {
         if (err) throw err;
         res.send(result);
       });

@@ -16,7 +16,7 @@ interface Character {
 })
 export class VoteComponent implements OnInit {
   votedPerson: string;
-  answered: boolean = false;
+  canVote: boolean = false;
   characters: string[] = [];
   charRegEx = '';
   @ViewChild(ChartComponent) child;
@@ -31,13 +31,15 @@ export class VoteComponent implements OnInit {
     }
 
     this.charRegEx = this.charRegEx.substring(0, this.charRegEx.length - 1);
+    this.canVote = this.vServ.voteStatus();
   }
 
   vote(name: string) {
     console.log(name);
     this.child.refresh(name);
     this.vServ.addVote(name);
-    this.answered = true;
+    this.vServ.hasVoted();
+    this.canVote = this.vServ.voteStatus();
     return false;
   }
 

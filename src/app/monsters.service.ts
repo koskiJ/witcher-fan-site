@@ -33,7 +33,6 @@ export class MonstersService {
 
     // Response handlers.
     xhr.onload = function() {
-      console.log('onload');
       root.monsters = JSON.parse(xhr.response);
       root.monsInitialized = true;
     };
@@ -43,7 +42,6 @@ export class MonstersService {
     };
 
     xhr.send();
-    return false;
   }
 
   updateMonsters() {

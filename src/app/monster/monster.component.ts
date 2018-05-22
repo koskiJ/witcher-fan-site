@@ -19,12 +19,6 @@ export class MonsterComponent implements OnInit {
       this.mName = params['name'];
     });
 
-    /*this.r.events.subscribe((path) => {
-      if (path.url != this.url) {
-        window.scrollTo(0, 0);
-      }
-    });*/
-
     window.scrollTo(0, 0);
 
     this.mName = this.mName[0].toUpperCase() + this.mName.substring(1);

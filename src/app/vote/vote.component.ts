@@ -35,7 +35,6 @@ export class VoteComponent implements OnInit {
   }
 
   vote(name: string) {
-    console.log(name);
     this.child.refresh(name);
     this.vServ.addVote(name);
     this.vServ.hasVoted();

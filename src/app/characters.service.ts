@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
 
-class Temp {
-  id: string;
-  name: string;
-  description: string;
-}
-
 @Injectable()
 export class CharactersService {
   private characters: Object[];
@@ -38,7 +32,6 @@ export class CharactersService {
 
     // Response handlers.
     xhr.onload = function() {
-      console.log('onload');
       root.characters = JSON.parse(xhr.response);
       root.charsInitialized = true;
     };
@@ -48,7 +41,6 @@ export class CharactersService {
     };
 
     xhr.send();
-    return false;
   }
 
   updateChars() {

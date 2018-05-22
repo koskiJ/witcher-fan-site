@@ -42,7 +42,6 @@ export class VotesService {
     };
 
     xhr.send();
-    return false;
   }
 
   private makeAddRequest(nam: string) {
@@ -75,7 +74,6 @@ export class VotesService {
 
     // Response handlers.
     xhr.onload = function() {
-      // console.log(xhr.responseText);
     };
 
     xhr.onerror = function() {
@@ -86,7 +84,6 @@ export class VotesService {
     sqlString(nam);
     xhr.send(req);
     this.makeVotesRequest();
-    return false;
   }
 
   updateVotes() {
@@ -110,7 +107,6 @@ export class VotesService {
   }
 
   voteStatus(): boolean {
-    console.log(this.canVote);
     return this.canVote;
   }
 

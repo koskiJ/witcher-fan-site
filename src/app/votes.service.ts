@@ -169,15 +169,14 @@ export class VotesService {
 
   newVoter() {
     let ip: string;
-    /*this.http.get<ItemResponse>('https://jsonip.com/').subscribe( jsonObject => {
+    this.http.get<any>('https://api.ipify.org').subscribe( jsonObject => {
       console.log(jsonObject);
       //ip = data.ip;
     }, err => {
       console.log(err);
-    });*/
+    });
 
     this.makeIpsRequest();
-    console.log(window.location.hostname);
 
     for (const i of this.ips) {
       if (ip === i.ip) {

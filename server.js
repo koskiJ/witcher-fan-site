@@ -21,6 +21,7 @@ con.connect(function(err) {
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist'));
+app.options('*', cors());
 app.use(cors());
 app.use(bodyParser.text());
 
